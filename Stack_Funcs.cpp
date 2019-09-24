@@ -1,0 +1,59 @@
+#include "Stack_Head.h"
+
+int Stack_Construct (Stack_t* stk)
+{
+    assert (stk);
+    //memset (stk->data, '1', sizeof (Stack_t));
+    int i = 0;
+    for (i = 0; i < MAX_SIZE; i++)
+        stk->data[i] = empty;
+    stk->size = 0;
+    stk->max_size = MAX_SIZE;
+    stk->error = 0;
+}
+
+int Stack_Push (Stack_t* stk, elem_t value)
+{
+    assert (stk);
+    if (stk->size >= MAX_SIZE)
+        return 0;
+    stk->data [stk->size++] = value;
+}
+
+elem_t Stack_Pop (Stack_t* stk)
+{
+    assert (stk);
+    if (stk->size <= 0)
+        return 0;
+    (*stk).size--;
+    elem_t answer = stk->data [stk->size];
+    stk->data [stk->size] = empty;
+    return answer;
+}
+
+int Dump (Stack_t* stk, int line)
+{
+    printf ("\n\n\nJust looking from %s, line %d\n", __FILE__, line);
+    printf ("Stack_t \"%s\" [0x%x]", stk->name, stk);
+    if (stk->error == 0)
+        printf (" (OK)\n");
+    else printf (" (Error)\n");
+    printf ("{\n    size = %d\n", stk->size);
+    printf ("    data[%d] = [0x%x]\n", stk->max_size, &(stk->data));
+    printf ("     {\n");
+    int i = 0;
+    for (i = 0; i < stk->max_size; i++)
+    {
+        if (i < stk->size)
+            printf ("          *");
+        else printf ("           ");
+
+        printf ("[%d] = %d", i, stk->data[i]);
+        if (stk->data[i] == empty)
+            printf (" [It might be empty]");
+        printf ("\n");
+    }
+    printf ("     }\n");
+    printf ("Error = %d\n", stk->error);
+    printf ("}\n\n\n");
+}
