@@ -5,7 +5,7 @@
 #define empty -666
 
 #define Stack_Constructor( this )         \
-    Stack_Construct ( &this );     \
+    Stack_Construct ( &this );            \
     this.name = #this;
 
 
@@ -24,9 +24,13 @@ struct Stack_t
 
 int Stack_Construct (Stack_t* stk);
 
+int Stack_Destruct (Stack_t* stk);
+
 int Stack_Push (Stack_t* stk, elem_t value);
 
 elem_t Stack_Pop (Stack_t* stk);
 
 int Dump (Stack_t* stk, int line);
+
+int Stack_OK (Stack_t* stk);
 
