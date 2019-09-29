@@ -51,7 +51,7 @@ elem_t Stack_Pop (Stack_t* stk)
 
     if (stk->size <= 0)
     {
-        stk.error = Stack_Empty;
+        stk->error = Stack_Empty;
         return Stack_Empty;
     }
 
